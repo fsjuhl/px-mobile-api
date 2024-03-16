@@ -51,7 +51,3 @@ See [here](docs/app-versions.md) for app version details.
 | `pnpm run lint`               | Run ESLint checking                           |
 | `pnpm run prettier:check`     | Check for Prettier violations                 |
 | `pnpm run prettier:format`    | Correct Prettier violations                   |
-
-# License
-
-This project is completely proprietary and shouldn't be shared under any circumstance.

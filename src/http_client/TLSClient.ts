@@ -112,6 +112,7 @@ const createWrapper = (libVersion: string): LibraryObject<never> => {
 	const libFile = join(__dirname, "../../lib", sharedLibraryFilename);
 	debug(`Loading shared library: "${libFile}"`);
 	if (!existsSync(libFile)) {
+		console.log(libFile)
 		throw new Error("Shared library not found!");
 	}
 

@@ -14,6 +14,7 @@ export const PxCookieNames = {
 } as const;
 
 export const SDK_VERSIONS = {
+	"1.16.3": parseSemVer("1.16.3")!,
 	"1.15.0": parseSemVer("1.15.0")!,
 	"1.15.2": parseSemVer("1.15.2")!,
 	"1.13.1": parseSemVer("1.13.1")!,
@@ -25,6 +26,14 @@ export const SDK_VERSIONS = {
 } as const;
 
 export const APP_DATABASE = {
+	goat: {
+		sdkNumber: SDK_VERSIONS["1.16.3"],
+		appName: "GOAT",
+		appVersion: "2.81.0",
+		bundleID: "com.airgoat.goat",
+		userAgent: "GOAT/2.81.0 (iPhone; iOS 18.1; Scale/3.00) Locale/en",
+		appId: "PXp6KJReLE"
+	},
 	hibbett: {
 		sdkNumber: SDK_VERSIONS["1.15.2"],
 		appName: "Hibbett | City Gear",
@@ -144,7 +153,7 @@ export const NETWORK_CARRIERS = [
 	"UTBox",
 ] as const;
 
-export const PX_COLLECTOR_TEMPLATE = "https://collector-{APP_ID}.perimeterx.net/api/v1/collector/mobile";
+export const PX_COLLECTOR_TEMPLATE = "https://collector-{APP_ID}.cl6.perimeterx.net/api/v1/collector/mobile";
 
 export interface PxApp {
 	appName: string;

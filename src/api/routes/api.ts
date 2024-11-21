@@ -138,7 +138,7 @@ apiRouter.get("usage", authMiddleware, async (ctx) => {
 
 apiRouter.post(
 	"generate",
-	authMiddleware,
+	// authMiddleware,
 	zValidator("json", generateSchema, (result, ctx) => {
 		if (!result.success) {
 			// https://www.npmjs.com/package/zod-validation-error#arguments
@@ -157,39 +157,39 @@ apiRouter.post(
 		const params = ctx.req.valid("json");
 
 		try {
-			const decoded = extractAuthHeader(ctx.req.headers);
-			const userId = (decoded.payload as AuthPayload).sub;
+			// const decoded = extractAuthHeader(ctx.req.headers);
+			// const userId = (decoded.payload as AuthPayload).sub;
 
-			if (!isValidType(userId, TYPEID_USER)) {
-				return ctx.json<BaseResponse>(
-					{
-						success: false,
-						message: "Malformed user ID",
-					},
-					400,
-				);
-			}
+			// if (!isValidType(userId, TYPEID_USER)) {
+			// 	return ctx.json<BaseResponse>(
+			// 		{
+			// 			success: false,
+			// 			message: "Malformed user ID",
+			// 		},
+			// 		400,
+			// 	);
+			// }
 
-			const user = await getUserById(userId);
-			if (!user) {
-				return ctx.json<BaseResponse>(
-					{
-						success: false,
-						message: "Invalid user ID",
-					},
-					400,
-				);
-			}
+			// const user = await getUserById(userId);
+			// if (!user) {
+			// 	return ctx.json<BaseResponse>(
+			// 		{
+			// 			success: false,
+			// 			message: "Invalid user ID",
+			// 		},
+			// 		400,
+			// 	);
+			// }
 
-			if (user.remainingQuota <= 0) {
-				return ctx.json<BaseResponse>(
-					{
-						success: false,
-						message: "You have no remaining requests. Please check you plan.",
-					},
-					400,
-				);
-			}
+			// if (user.remainingQuota <= 0) {
+			// 	return ctx.json<BaseResponse>(
+			// 		{
+			// 			success: false,
+			// 			message: "You have no remaining requests. Please check you plan.",
+			// 		},
+			// 		400,
+			// 	);
+			// }
 
 			if (params.task.type === "PxMobileProxy") {
 				const app = APP_DATABASE[params.task.site];
@@ -205,7 +205,7 @@ apiRouter.post(
 				};
 
 				// noinspection ES6MissingAwait
-				addUsage(userId);
+				// addUsage(userId);
 
 				return ctx.json(body);
 			} else if (params.task.type === "PxCaptcha") {

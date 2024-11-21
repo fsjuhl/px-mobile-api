@@ -20,7 +20,7 @@ import env from "@src/env.js";
 import { GenerationException } from "@src/px/errors.js";
 
 const debug = createDebugMessages("px:cookie");
-const DEBUG_PAYLOAD = env.NODE_ENV === "development";
+const DEBUG_PAYLOAD = env.NODE_ENV !== "development";
 
 export default async function bakeCookie(app: PxApp, proxy: string) {
 	const startTime = performance.now();
@@ -28,6 +28,7 @@ export default async function bakeCookie(app: PxApp, proxy: string) {
 	const PX_ENDPOINT = PX_COLLECTOR_TEMPLATE.replace("{APP_ID}", app.appId.toLowerCase());
 	const USER_AGENT = "PerimeterX Android SDK/" + app.sdkNumber.version;
 	const device = await getRandomDevice();
+	console.log(device)
 	const payload1 = await getInitPayload(device, app);
 	debug("Payload1: %O", payload1[0].d);
 
@@ -200,6 +201,7 @@ export default async function bakeCookie(app: PxApp, proxy: string) {
 async function getInitPayload(device: DeviceFingerprint, app: PxApp) {
 	const isV2 = app.sdkNumber.compare(SDK_VERSIONS["2.2.0"]) >= 0;
 	const timestamp = (Date.now() / 1000) | 0;
+	console.log(device)
 	const fingerprints = await createFingerprints(device, isV2);
 
 	// PX414

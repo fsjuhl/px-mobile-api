@@ -26,7 +26,7 @@ export async function getRandomDevice() {
 		const lines = await readFile("./resources/devices.csv", "utf8");
 
 		devices = lines
-			.split("\r\n")
+			.split("\n")
 			.slice(1)
 			.map((line) => {
 				const [
